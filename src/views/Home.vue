@@ -73,7 +73,7 @@
 <style lang="scss">
   .home {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 50% 50%;
     grid-gap: 4px;
   }
   .item {
