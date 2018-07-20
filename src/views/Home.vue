@@ -1,10 +1,11 @@
 <template>
   <div class="home">
-    <div class="item" v-for="(post, index) in allPosts.posts" v-bind:key="`post-${index}`">
-      {{ post.title }}, written on <span v-html="returnDate(post.timestamps)"></span>
+    <div class="item" v-for="(post, index) in allPosts.posts" v-bind:key="`post-${index}`" v-on:click="navigateToPost(post)">
+      <h3>{{ post.title }}</h3>
+      <p v-html="returnPreview(post)"></p>
+      <p v-html="returnDate(post.timestamps)"></p>
       <ul v-if="post.tags.length > 0">
-        <li>Filed Under:</li>
-        <li v-for="(tag, i) in post.tags" v-bind:key="`tag-${i}`">{{ tag }}</li>
+        <li v-for="(tag, i) in post.tags" v-bind:key="`tag-${i}`" v-on:click.stop="navigateToTagList(tag)">{{ tag }}</li>
       </ul>
     </div>
   </div>
@@ -66,6 +67,15 @@
       returnDate: function(timestamps) {
         return moment(timestamps.created_at).format('MM/DD/YYYY');
       },
+      returnPreview: function(post) {
+        return post.preview.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+      },
+      navigateToPost: function(post) {
+        this.$router.push({ name: 'about', params: { userId: 123 }})
+      },
+      navigateToTagList: function(tag) {
+        console.log(tag)
+      }
     }
   }
 </script>
@@ -81,6 +91,30 @@
     padding: 50px;
     box-sizing: border-box;
     background: #f5f5f5;
+    overflow: hidden;
+    cursor: pointer;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      float: left;
+      margin-right: 4px;
+      background: #fff;
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    li:hover {
+      background: #f5f5f5;
+      color: blue;
+    }
+
   }
   @media (max-width: 768px) {
     .home {

@@ -7,7 +7,7 @@
     <section id="info">
       <div class="tagline">
         <h1>John Patrick Given</h1>
-        <p>is a engineer developer living and working in Seattle, WA.</p>
+        <h5>is a software developer living and working in Seattle, WA.</h5>
       </div>
     </section>
     <section id="content">
@@ -18,15 +18,18 @@
 
 <style lang="scss">
   html, body {
-    font-size: 18px;
+    font-size: 16px;
+    color: #222;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
     box-sizing: border-box;
     min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 150%;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Oswald', sans-serif;
   }
   #info {
     position: absolute;
@@ -35,13 +38,13 @@
     bottom: 0;
     left: 0;
     background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
     ), url('./assets/me.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    filter: grayscale(60%);
+
 
     .tagline {
       width: 100%;
@@ -54,11 +57,13 @@
 
       h1 {
         font-size: 54px;
-        margin: 20px 0;
+        margin: 30px 0;
       }
 
-      p {
+      h5 {
         font-size: 18px;
+        margin: 0;
+        font-weight: 200;
       }
 
     }
@@ -73,5 +78,7 @@
     right: 0;
     bottom: 0;
     left: 50%;
+    overflow-y: auto;
+    background: url('./assets/crossword.png');
   }
 </style>
