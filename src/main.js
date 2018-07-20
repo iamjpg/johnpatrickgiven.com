@@ -2,6 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import $ from 'jquery'
+import moment from 'moment'
+
+window.$ = $;
+window.moment = moment;
 
 Vue.config.productionTip = false
 
