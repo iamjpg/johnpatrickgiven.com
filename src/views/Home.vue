@@ -2,8 +2,8 @@
   <div class="home">
     <div class="item" v-for="(post, index) in allPosts.posts" v-bind:key="`post-${index}`" v-on:click="navigateToPost(post)">
       <h3>{{ post.title }}</h3>
-      <p v-html="returnPreview(post)"></p>
       <p v-html="returnDate(post.timestamps)"></p>
+      <p v-html="returnPreview(post)"></p>
       <ul v-if="post.tags.length > 0">
         <li v-for="(tag, i) in post.tags" v-bind:key="`tag-${i}`" v-on:click.stop="navigateToTagList(tag)">{{ tag }}</li>
       </ul>
@@ -65,13 +65,13 @@
         })
       },
       returnDate: function(timestamps) {
-        return moment(timestamps.created_at).format('MM/DD/YYYY');
+        return `Written on ${moment(timestamps.created_at).format('MM/DD/YYYY')}`;
       },
       returnPreview: function(post) {
         return post.preview.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
       },
       navigateToPost: function(post) {
-        this.$router.push({ name: 'about', params: { userId: 123 }})
+        this.$router.push({ name: 'post', params: { slug: post.slug }})
       },
       navigateToTagList: function(tag) {
         console.log(tag)
@@ -84,15 +84,19 @@
   .home {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 4px;
+    grid-gap: 10px;
   }
   .item {
     width: 100%;
-    padding: 50px;
+    padding: 40px;
     box-sizing: border-box;
     background: #f5f5f5;
     overflow: hidden;
     cursor: pointer;
+
+    h3 {
+      margin-top: 0;
+    }
 
     ul {
       list-style: none;
@@ -106,7 +110,7 @@
       background: #fff;
       padding: 3px 6px;
       border-radius: 3px;
-      font-size: 12px;
+      font-size: 16px;
       cursor: pointer;
     }
 
@@ -118,7 +122,7 @@
   }
   @media (max-width: 768px) {
     .home {
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 100%;
     }
   }
   @media (max-width: 414px) {

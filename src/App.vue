@@ -18,7 +18,7 @@
 
 <style lang="scss">
   html, body {
-    font-size: 16px;
+    font-size: 22px;
     color: #222;
     margin: 0;
     padding: 0;
