@@ -1,8 +1,8 @@
 <template>
-  <div id="post">
-    <h1>{{ post.title }}</h1>
-    <div class="credit">By {{ post.author.firstname }} {{ post.author.lastname }} on <span v-html="returnDate(post.timestamps)"></span></div>
-    <div id="post-body" v-html="post.body"></div>
+  <div id="page">
+    <h3>{{ page.title }}</h3>
+    <div class="credit">By {{ page.author.firstname }} {{ page.author.lastname }}. Last updated: <span v-html="returnDate(page.timestamps)"></span></div>
+    <div id="post-body" v-html="page.body"></div>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
   export default {
     data() {
       return {
-        post: {
+        page: {
           title: "",
           preview: "",
           slug: "",
@@ -30,24 +30,24 @@
       }
     },
     mounted() {
-      this.getPost();
+      this.getPage();
     },
     methods: {
-      getPost: function() {
-        $.getJSON(`https://www.theblog.io/service/v1/post/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/${this.$route.params.slug}/`, (response) => {
-          this.post = response.post;
-          $('#post').fadeIn('slow');
+      getPage: function() {
+        $.getJSON(`https://www.theblog.io/service/v1/page/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/${this.$route.params.slug}/`, (response) => {
+          this.page = response.page;
+          $('#page').fadeIn('slow');
         })
       },
       returnDate: function(timestamps) {
-        return moment(timestamps.created_at).format('MM/DD/YYYY');
+        return moment(timestamps.updated_at).format('MM/DD/YYYY');
       }
     }
   }
 </script>
 
 <style lang="scss">
-#post {
+#page {
   display: none;
   padding: 50px;
   h1 {

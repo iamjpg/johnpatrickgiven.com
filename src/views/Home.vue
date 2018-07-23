@@ -55,13 +55,7 @@
         $.getJSON('https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all', function(response) {
           // console.log(JSON.parse(JSON.stringify(response)))
           self.allPosts = response;
-          var time = 0;
-          requestAnimationFrame(function() {
-            $('.post').each(function(i, o) {
-              setTimeout( function(){ self.animatePosts($(o)); }, time)
-              time += 50;
-            })
-          })
+          $('.home').fadeIn('slow').css('display', 'grid')
         })
       },
       returnDate: function(timestamps) {
@@ -86,6 +80,7 @@
     grid-template-columns: 50% 50%;
     grid-gap: 10px;
     overflow-x: hidden;
+    display: none;
   }
   .item {
     width: 100%;

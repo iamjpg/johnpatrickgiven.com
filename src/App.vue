@@ -37,7 +37,7 @@
       </div>
     </section>
     <section id="content">
-      <router-view/>
+      <router-view :key="$route.fullPath" />
     </section>
   </main>
 </div>
