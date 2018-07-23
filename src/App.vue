@@ -1,9 +1,13 @@
 <template>
 <div id="app">
   <div id="nav">
-    <!-- router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link -->
-    <a href="#" class="menu-toggle" data-wpel-link="internal"> <span></span> <span></span> <span></span> </a>
+    <a href="#" class="menu-toggle" v-on:click="toggleMenu()"> <span></span> <span></span> <span></span> </a>
+  </div>
+  <div id="menu">
+    <h3>Home</h3>
+    <h3 v-for="(page, index) in pages" v-bind:key="`page-${index}`">
+      <router-link v-bind:to="`/page/${page.slug}`">{{ page.title }}</router-link>
+    </h3>
   </div>
   <main>
     <section id="info">
@@ -18,6 +22,45 @@
   </main>
 </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        tags: {
+          all_tags: []
+        },
+        pages: [{
+          title: '',
+          slug: ''
+        }]
+      }
+    },
+    mounted() {
+      this.getPages();
+    },
+    methods: {
+      toggleMenu: function() {
+        const nav = $('.menu-toggle')
+        const menu = $('#menu')
+        if (nav.hasClass('close')) {
+          nav.removeClass('close')
+          menu.removeClass('open')
+        } else {
+          nav.addClass('close')
+          menu.addClass('open')
+        }
+      },
+      getPages: function() {
+       $.getJSON('https://www.theblog.io/service/v1/pages/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all', (response) => {
+         // console.log(JSON.parse(JSON.stringify(response)))
+         this.tags = response.tags;
+         this.pages = response.pages;
+       })
+     }
+    }
+  }
+</script>
 
 <style lang="scss">
 body,
@@ -47,7 +90,7 @@ h6 {
     left: 23px;
     top: 3px;
     transition: cubic-bezier(.22,.61,.36,1);
-    z-index: 7;
+    z-index: 110;
 }
 .menu-toggle span {
     display: block;
@@ -85,6 +128,24 @@ h6 {
     -webkit-transform: rotate(-45deg) translateY(50%);
     transform: rotate(-45deg) translateY(50%);
     width: 100%;
+}
+#menu {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 40px 5% 40px calc(5% + 80px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #000;
+  opacity: .8;
+  z-index: 100;
+  color: #fff;
+  display: none;
+}
+#menu.open {
+  bottom: 0;
+  display: block;
 }
 #info {
     position: absolute;
