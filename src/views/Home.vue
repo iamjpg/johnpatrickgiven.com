@@ -85,6 +85,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-gap: 10px;
+    overflow-x: hidden;
   }
   .item {
     width: 100%;
