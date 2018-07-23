@@ -1,5 +1,6 @@
 <template>
   <div id="post">
+    <back-btn />
     <h1>{{ post.title }}</h1>
     <div class="credit">By {{ post.author.firstname }} {{ post.author.lastname }} on <span v-html="returnDate(post.timestamps)"></span></div>
     <div id="post-body" v-html="post.body"></div>
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+  import BackBtn from '@/components/BackBtn'
   export default {
     data() {
       return {
@@ -28,6 +30,9 @@
           }
         }
       }
+    },
+    components: {
+      'back-btn': BackBtn
     },
     mounted() {
       this.getPost();
