@@ -4,7 +4,7 @@
     <a href="#" class="menu-toggle" v-on:click="toggleMenu()"> <span></span> <span></span> <span></span> </a>
   </div>
   <div id="menu">
-    <h3>Home</h3>
+    <h3><router-link to="/">Home</router-link></h3>
     <h3 v-for="(page, index) in pages" v-bind:key="`page-${index}`">
       <router-link v-bind:to="`/page/${page.slug}`">{{ page.title }}</router-link>
     </h3>
@@ -37,13 +37,17 @@
       }
     },
     mounted() {
+      this.$router.afterEach(() => {
+        this.toggleMenu(true)
+      })
       this.getPages();
     },
     methods: {
-      toggleMenu: function() {
+      toggleMenu: function(force=false) {
         const nav = $('.menu-toggle')
         const menu = $('#menu')
-        if (nav.hasClass('close')) {
+        
+        if (nav.hasClass('close') || force) {
           nav.removeClass('close')
           menu.removeClass('open')
         } else {
@@ -138,10 +142,19 @@ h6 {
   right: 0;
   left: 0;
   background: #000;
-  opacity: .8;
+  opacity: .9;
   z-index: 100;
   color: #fff;
   display: none;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
 }
 #menu.open {
   bottom: 0;
