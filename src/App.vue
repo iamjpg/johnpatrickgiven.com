@@ -4,10 +4,30 @@
     <a href="#" class="menu-toggle" v-on:click="toggleMenu()"> <span></span> <span></span> <span></span> </a>
   </div>
   <div id="menu">
-    <h3><router-link to="/">Home</router-link></h3>
-    <h3 v-for="(page, index) in pages" v-bind:key="`page-${index}`">
-      <router-link v-bind:to="`/page/${page.slug}`">{{ page.title }}</router-link>
-    </h3>
+    <div class="menu-info">
+      <h1>John Patrick Given</h1>
+      <div class="no-wrap">
+        <h5>Social</h5>
+        <a href="https://instagram.com/iamjpg" target="_blank" class="no-style"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        &nbsp;
+        <a href="https://twitter.com/iamjpg" target="_blank" class="no-style"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        &nbsp;
+        <a href="https://github.com/iamjpg" target="_blank" class="no-style"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="menu-links">
+      <h3><router-link to="/">Home</router-link></h3>
+      <h3 v-for="(page, index) in pages" v-bind:key="`page-${index}`">
+        <router-link v-bind:to="`/page/${page.slug}`">{{ page.title }}</router-link>
+      </h3>
+    </div>
+    <div class="clear"></div>
+    <h5>Tags</h5>
+    <ul id="tags">
+      <li v-for="(tag, index) in tags.all_tags" v-bind:key="`tag-${index}`" v-if="tag.taggings_count > 0">
+        <router-link v-bind:to="`/tags/${tag.name}`">{{ tag.name }}</router-link> ({{ tag.taggings_count }})
+      </li>
+    </ul>
   </div>
   <main>
     <section id="info">
@@ -46,7 +66,7 @@
       toggleMenu: function(force=false) {
         const nav = $('.menu-toggle')
         const menu = $('#menu')
-        
+
         if (nav.hasClass('close') || force) {
           nav.removeClass('close')
           menu.removeClass('open')
@@ -155,10 +175,43 @@ h6 {
     text-decoration: none;
   }
 
+  ul#tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background: #222;
+      padding: 3px 6px;
+      border-radius: 3px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
 }
 #menu.open {
   bottom: 0;
   display: block;
+}
+.menu-info {
+  float: right;
+  width: 50%;
+
+  h5 {
+    margin-bottom: 8px;
+  }
+}
+.menu-links {
+  float: left;
+  width: 50%;
+}
+.clear {
+  clear: both;
 }
 #info {
     position: absolute;
