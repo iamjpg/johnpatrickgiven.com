@@ -1,7 +1,7 @@
 <template>
   <div id="page">
     <h3>{{ page.title }}</h3>
-    <div class="credit">By {{ page.author.firstname }} {{ page.author.lastname }}. Last updated: <span v-html="returnDate(page.timestamps)"></span></div>
+    <div class="credit">Last updated: <span v-html="returnDate(page.timestamps)"></span></div>
     <div id="post-body" v-html="page.body"></div>
   </div>
 </template>

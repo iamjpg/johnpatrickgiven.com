@@ -256,4 +256,26 @@ h6 {
     overflow-y: auto;
     background: url("./assets/crossword.png");
 }
+
+@media (max-width: 414px) {
+  #content, #info {
+    position: static;
+  }
+  #info {
+    height: 40vh;
+
+    .tagline {
+      top: 20%;
+    }
+  }
+
+  #menu {
+    padding: 40px;
+  }
+
+  .menu-links, .menu-info {
+    float: none;
+    width: 100%;
+  }
+}
 </style>
