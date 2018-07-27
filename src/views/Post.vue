@@ -54,7 +54,7 @@
 <style lang="scss">
 #post {
   display: none;
-  padding: 50px;
+  padding: 40px;
   h1 {
     margin-top: 0;
   }

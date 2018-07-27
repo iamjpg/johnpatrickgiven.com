@@ -98,6 +98,7 @@ html {
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 150%;
+    background: url("./assets/dust_scratches.png");
 }
 h1,
 h2,
@@ -106,6 +107,12 @@ h4,
 h5,
 h6 {
     font-family: 'Oswald', sans-serif;
+}
+a {
+  color: #66b3ff;
+}
+a:hover {
+  text-decoration: none;
 }
 .menu-toggle {
     width: 24px;
@@ -254,7 +261,6 @@ h6 {
     bottom: 0;
     left: 50%;
     overflow-y: auto;
-    background: url("./assets/crossword.png");
 }
 
 @media (max-width: 414px) {

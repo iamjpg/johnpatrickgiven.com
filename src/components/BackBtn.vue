@@ -20,12 +20,9 @@
 
 <style>
   #backbtn {
-    background: #f5f5f5;
+    color: #66b3ff;
     padding: 20px;
     margin-bottom: 20px;
     cursor: pointer;
-  }
-  #backbtn:hover {
-    background: #e5e5e5;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="page">
-    <h3>{{ page.title }}</h3>
+    <h1>{{ page.title }}</h1>
     <div class="credit">Last updated: <span v-html="returnDate(page.timestamps)"></span></div>
     <div id="post-body" v-html="page.body"></div>
   </div>
@@ -49,7 +49,7 @@
 <style lang="scss">
 #page {
   display: none;
-  padding: 50px;
+  padding: 40px;
   h1 {
     margin-top: 0;
   }

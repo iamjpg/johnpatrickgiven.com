@@ -86,7 +86,7 @@
     width: 100%;
     padding: 40px;
     box-sizing: border-box;
-    background: #f5f5f5;
+    background: #e6e5e5;
     overflow: hidden;
     cursor: pointer;
 
