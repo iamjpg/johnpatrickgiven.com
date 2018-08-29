@@ -29,7 +29,6 @@
     methods: {
       returnPosts: function(append=false) {
         const self = this;
-        console.log(this.page)
         $.getJSON(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all?page=${this.page}`, function(response) {
           // console.log(JSON.parse(JSON.stringify(response)))
           if (!append) {
