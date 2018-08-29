@@ -44,6 +44,7 @@
 </template>
 
 <script>
+  
   export default {
     data() {
       return {
@@ -72,7 +73,7 @@
           menu.removeClass('open')
         } else {
           nav.addClass('close')
-          menu.addClass('open')
+          menu.addClass('open').scrollTop(0)
         }
       },
       getPages: function() {
