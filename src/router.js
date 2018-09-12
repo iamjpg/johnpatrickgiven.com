@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
-import Post from './views/Post.vue'
-import Page from './views/Page'
-import Tag from './views/Tag'
+const Home = () => import(/* webpackChunkName: "home" */ './views/Home.vue');
+const About = () => import(/* webpackChunkName: "about" */ './views/About.vue');
+const Post = () => import(/* webpackChunkName: "post" */ './views/Post.vue');
+const Page = () => import(/* webpackChunkName: "page" */ './views/Page.vue');
+const Tag = () => import(/* webpackChunkName: "tag" */ './views/Tag.vue');
 
 Vue.use(Router)
 

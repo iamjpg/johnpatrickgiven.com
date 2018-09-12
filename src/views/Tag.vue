@@ -48,7 +48,10 @@ export default {
   methods: {
     returnPosts: function() {
       const self = this;
-      $.getJSON(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/tags/${this.$route.params.tag}/`, function(response) {
+      fetch(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/tags/${this.$route.params.tag}/`).then(function(response) {
+        return response.text()
+      }).then(function(body) {
+        const response = JSON.parse(body)
         self.allPosts = response;
         $('#tags-container').fadeIn('slow')
       })

@@ -32,7 +32,7 @@
   <main>
     <section id="info">
       <div class="tagline">
-        <h1>John Patrick Given</h1>
+        <h1><router-link :to="{ name: 'home' }">John Patrick Given</router-link></h1>
         <h5>is a software developer living and working in Seattle, WA.</h5>
       </div>
     </section>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+
   
   export default {
     data() {
@@ -65,23 +66,27 @@
     },
     methods: {
       toggleMenu: function(force=false) {
-        const nav = $('.menu-toggle')
-        const menu = $('#menu')
+        const nav = document.querySelector('.menu-toggle')
+        const menu = document.querySelector('#menu')
 
-        if (nav.hasClass('close') || force) {
-          nav.removeClass('close')
-          menu.removeClass('open')
+        if (nav.classList && nav.classList.contains('close') || force) {
+          nav.classList.remove('close')
+          menu.classList.remove('open')
         } else {
-          nav.addClass('close')
-          menu.addClass('open').scrollTop(0)
+          nav.classList.add('close')
+          menu.classList.add('open')
+          menu.scrollTop = 0
         }
       },
       getPages: function() {
-       $.getJSON('https://www.theblog.io/service/v1/pages/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all', (response) => {
-         // console.log(JSON.parse(JSON.stringify(response)))
-         this.tags = response.tags;
-         this.pages = response.pages;
-       })
+        const self = this
+        fetch('https://www.theblog.io/service/v1/pages/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all').then(function(response) {
+          return response.text()
+        }).then(function(body) {
+          const response = JSON.parse(body)
+          self.tags = response.tags
+          self.pages = response.pages
+        })
      }
     }
   }
@@ -244,6 +249,12 @@ a:hover {
         h1 {
             font-size: 54px;
             margin: 30px 0;
+
+            a {
+              color: #fff;
+              text-decoration: none;
+            }
+
         }
 
         h5 {

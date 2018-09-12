@@ -39,8 +39,12 @@
     },
     methods: {
       getPost: function() {
-        $.getJSON(`https://www.theblog.io/service/v1/post/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/${this.$route.params.slug}/`, (response) => {
-          this.post = response.post;
+        const self = this
+        fetch(`https://www.theblog.io/service/v1/post/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/${this.$route.params.slug}/`).then(function(response) {
+          return response.text()
+        }).then(function(body) {
+          const response = JSON.parse(body)
+          self.post = response.post;
           $('#post').fadeIn('slow');
         })
       },

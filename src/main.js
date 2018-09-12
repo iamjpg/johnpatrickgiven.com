@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import HomeStore from './data/HomeStore'
 
+require('es6-promise').polyfill()
+
 Vue.config.productionTip = false
 
 const $window = $(window)

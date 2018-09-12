@@ -2,7 +2,7 @@
   <div class="home">
     <div class="item" v-for="(post, index) in allPosts.posts" v-bind:key="`post-${index}`" v-on:click="navigateToPost(post)">
       <h3>{{ post.title }}</h3>
-      <p v-html="returnDate(post.timestamps)"></p>
+      <p class="ts" v-html="returnDate(post.timestamps)"></p>
       <p v-html="returnPreview(post)"></p>
       <ul v-if="post.tags.length > 0">
         <li v-for="(tag, i) in post.tags" v-bind:key="`tag-${i}`" v-on:click.stop="navigateToTagList(tag)">{{ tag }}</li>
@@ -43,7 +43,7 @@
         })
       },
       returnDate: function(timestamps) {
-        return `Written on ${moment(timestamps.created_at).format('MM/DD/YYYY')}`;
+        return `Posted ${moment(timestamps.created_at).fromNow()}`;
       },
       returnPreview: function(post) {
         return post.preview.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
@@ -77,6 +77,11 @@
     grid-gap: 10px;
     overflow-x: hidden;
     display: none;
+  }
+  .ts {
+    margin-top: -24px;
+    margin-bottom: 0;
+    font-size: 14px;
   }
   .item {
     width: 100%;
