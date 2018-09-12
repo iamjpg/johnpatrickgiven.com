@@ -36,7 +36,7 @@
         <h5>is a software developer living and working in Seattle, WA.</h5>
       </div>
     </section>
-    <section id="content">
+    <section id="content" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300">
       <router-view :key="$route.fullPath" />
     </section>
   </main>
@@ -44,8 +44,7 @@
 </template>
 
 <script>
-
-  
+  import PubSub from 'pubsub-js';
   export default {
     data() {
       return {
@@ -65,6 +64,11 @@
       this.getPages();
     },
     methods: {
+      loadMore: function() {
+        this.busy = true
+        if (document.querySelector('.home')) PubSub.publish('LOAD_MOAR')
+        this.busy = false;
+      },
       toggleMenu: function(force=false) {
         const nav = document.querySelector('.menu-toggle')
         const menu = document.querySelector('#menu')

@@ -23,7 +23,10 @@
     },
     mounted() {
       this.returnPosts();
-      this.endlessScrollInit();
+      // this.endlessScrollInit();
+      PubSub.subscribe('LOAD_MOAR', () => {
+        this.getMoar();
+      })
     },
     data() {
       return HomeStore
@@ -31,6 +34,7 @@
     methods: {
       returnPosts: function(append=false) {
         const self = this;
+        const elem = document.querySelector('.home')
         fetch(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all?page=${this.page}`).then(function(response) {
           return response.text()
         }).then(function(body) {
@@ -38,13 +42,12 @@
           if (!append) {
             self.allPosts = response;
             self.initialPostsReturned = true;
+            Helpers.fadeIn(elem)
           } else {
             response.posts.forEach((o) => {
               self.allPosts.posts.push(o)
             })
           }
-          const elem = document.querySelector('.home')
-          Helpers.fadeIn(elem)
           elem.style.display = 'grid'
         })
       },
@@ -58,20 +61,11 @@
         this.page = 1;
         requestAnimationFrame(() => { this.$router.push({ name: 'post', params: { slug: post.slug }}) })
       },
-      navigateToTagList: function(tag) {
-        // console.log(tag)
-      },
-      endlessScrollInit: function() {
-        const self = this;
-        const $elem = $('#content')
-        $elem.off('scroll').on('scroll', debounce(function() {
-          if (this.scrollTop > (this.scrollHeight - this.offsetHeight - 500) && window.location.hash === '#/') {
-            self.page = self.page + 1;
-            if ($('.item').length === self.allPosts.total_posts) return false;
-            self.returnPosts(true);
-          }
-        }, 200))
-      }
+      getMoar: debounce(function() {
+        this.page = this.page + 1;
+        if (document.querySelectorAll('.item').length === this.allPosts.total_posts) return false;
+        this.returnPosts(true);
+      }, 500, true)
     }
   }
 </script>

@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import HomeStore from './data/HomeStore'
+import PubSub from 'pubsub-js';
+import infiniteScroll from 'vue-infinite-scroll'
+
+Vue.use(infiniteScroll)
 
 require('es6-promise').polyfill()
 
