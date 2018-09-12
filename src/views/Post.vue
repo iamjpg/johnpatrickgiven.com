@@ -9,6 +9,7 @@
 
 <script>
   import BackBtn from '@/components/BackBtn'
+  import Helpers from '@/helpers/helpers'
   export default {
     data() {
       return {
@@ -45,7 +46,7 @@
         }).then(function(body) {
           const response = JSON.parse(body)
           self.post = response.post;
-          $('#post').fadeIn('slow');
+          Helpers.fadeIn(document.querySelector('#post'))
         })
       },
       returnDate: function(timestamps) {
@@ -57,7 +58,7 @@
 
 <style lang="scss">
 #post {
-  display: none;
+  opacity: 0;
   padding: 40px;
   h1 {
     margin-top: 0;

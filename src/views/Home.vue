@@ -13,7 +13,9 @@
 
 <script>
   import HomeStore from '@/data/HomeStore'
+  window.HomeStore = HomeStore
   import debounce from 'debounce'
+  import Helpers from '@/helpers/helpers'
   export default {
     name: 'home',
     components: {
@@ -29,8 +31,10 @@
     methods: {
       returnPosts: function(append=false) {
         const self = this;
-        $.getJSON(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all?page=${this.page}`, function(response) {
-          // console.log(JSON.parse(JSON.stringify(response)))
+        fetch(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all?page=${this.page}`).then(function(response) {
+          return response.text()
+        }).then(function(body) {
+          const response = JSON.parse(body)
           if (!append) {
             self.allPosts = response;
             self.initialPostsReturned = true;
@@ -39,7 +43,9 @@
               self.allPosts.posts.push(o)
             })
           }
-          $('.home').fadeIn('slow').css('display', 'grid')
+          const elem = document.querySelector('.home')
+          Helpers.fadeIn(elem)
+          elem.style.display = 'grid'
         })
       },
       returnDate: function(timestamps) {
@@ -72,6 +78,7 @@
 
 <style lang="scss">
   .home {
+    opacity: 0;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-gap: 10px;

@@ -8,11 +8,9 @@ require('es6-promise').polyfill()
 
 Vue.config.productionTip = false
 
-const $window = $(window)
-
 router.beforeEach((to, from, next) => {
   HomeStore.page = 1;
-  $window.scrollTop(0)
+  window.scrollTop = 0;
   next();
 })
 

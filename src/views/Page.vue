@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import Helpers from '@/helpers/helpers'
   export default {
     data() {
       return {
@@ -40,7 +41,7 @@
         }).then(function(body) {
           const response = JSON.parse(body)
           self.page = response.page;
-          $('#page').fadeIn('slow');
+          Helpers.fadeIn(document.querySelector('#page'))
         })
       },
       returnDate: function(timestamps) {
@@ -52,7 +53,7 @@
 
 <style lang="scss">
 #page {
-  display: none;
+  opacity: 0;
   padding: 40px;
   h1 {
     margin-top: 0;

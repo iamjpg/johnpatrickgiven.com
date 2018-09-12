@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import Helpers from '@/helpers/helpers'
 export default {
   name: 'home',
   data() {
@@ -53,7 +54,7 @@ export default {
       }).then(function(body) {
         const response = JSON.parse(body)
         self.allPosts = response;
-        $('#tags-container').fadeIn('slow')
+        Helpers.fadeIn(document.querySelector('#tags-container'))
       })
     },
     animatePosts: function(elem) {
@@ -76,7 +77,7 @@ export default {
 
 <style lang="scss">
 #tags-container {
-  display: none;
+  opacity: 0;
   padding: 50px;
   h1 {
     margin-top: 0;
