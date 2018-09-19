@@ -63,7 +63,7 @@
       },
       getMoar: debounce(function() {
         this.page = this.page + 1;
-        if (document.querySelectorAll('.item').length === this.allPosts.total_posts) return false;
+        if (document.querySelectorAll('.item').length === this.allPosts.number_available) return false;
         this.returnPosts(true);
       }, 500, true)
     }

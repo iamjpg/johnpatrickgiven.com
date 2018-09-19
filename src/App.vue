@@ -236,7 +236,7 @@ a:hover {
     right: 50%;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./assets/me.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./assets/me-min.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
