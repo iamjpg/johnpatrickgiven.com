@@ -33,12 +33,15 @@
     },
     methods: {
       returnPosts: function(append=false) {
+        console.log(0)
         const self = this;
         const elem = document.querySelector('.home')
         fetch(`https://www.theblog.io/service/v1/posts/74bf4cdf-7cea-42d4-b90a-849837332ddb/82SiwywTe1EtU7DMz-p3/all?page=${this.page}`).then(function(response) {
           return response.text()
         }).then(function(body) {
+          console.log(body)
           const response = JSON.parse(body)
+          console.log(1)
           if (!append) {
             self.allPosts = response;
             self.initialPostsReturned = true;
@@ -48,7 +51,14 @@
               self.allPosts.posts.push(o)
             })
           }
-          elem.style.display = 'grid'
+          // if IE11 - it hates everything about grid detection
+          if (!!window.MSInputMethodContext && !!document.documentMode) {
+            elem.style.display = 'block'
+            elem.style.opacity = 1
+          } else {
+            elem.style.display = (CSS && CSS.supports && CSS.supports('display', 'grid')) ? 'grid' : 'block'
+          }
+          
         })
       },
       returnDate: function(timestamps) {

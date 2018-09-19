@@ -5,6 +5,7 @@ import store from './store'
 import HomeStore from './data/HomeStore'
 import PubSub from 'pubsub-js';
 import infiniteScroll from 'vue-infinite-scroll'
+import 'whatwg-fetch'
 
 Vue.use(infiniteScroll)
 
