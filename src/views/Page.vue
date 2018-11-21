@@ -45,7 +45,7 @@
         })
       },
       returnDate: function(timestamps) {
-        return moment(timestamps.updated_at).format('MM/DD/YYYY');
+        return window.moment(timestamps.updated_at).format('MM/DD/YYYY');
       }
     }
   }

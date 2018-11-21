@@ -24,7 +24,7 @@
     mounted() {
       this.returnPosts();
       // this.endlessScrollInit();
-      PubSub.subscribe('LOAD_MOAR', () => {
+      window.PubSub.subscribe('LOAD_MOAR', () => {
         this.getMoar();
       })
     },
@@ -59,7 +59,7 @@
         })
       },
       returnDate: function(timestamps) {
-        return `Posted ${moment(timestamps.created_at).fromNow()}`;
+        return `Posted ${window.moment(timestamps.created_at).fromNow()}`;
       },
       returnPreview: function(post) {
         return post.preview.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');

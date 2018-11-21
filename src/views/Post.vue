@@ -50,7 +50,7 @@
         })
       },
       returnDate: function(timestamps) {
-        return moment(timestamps.created_at).format('MM/DD/YYYY');
+        return window.moment(timestamps.created_at).format('MM/DD/YYYY');
       }
     }
   }
