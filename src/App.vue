@@ -241,16 +241,10 @@ a:hover {
     right: 50%;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./assets/me3.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./assets/me-min.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    filter: FlipH;
-    -ms-filter: "FlipH";
 
     .tagline {
       width: 100%;
@@ -282,14 +276,6 @@ a:hover {
 
     }
 
-}
-#info * {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
 }
 #content {
     position: absolute;
