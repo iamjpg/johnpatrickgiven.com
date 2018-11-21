@@ -116,7 +116,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Slabo 27px', sans-serif;
+    text-transform: capitalize;
 }
 a {
   color: #66b3ff;
@@ -184,6 +185,10 @@ a:hover {
   color: #fff;
   display: none;
 
+  h1,h2,h3,h4,h5,div,li {
+    font-family: 'PT Sans Narrow', sans-serif;
+  }
+
   a {
     color: #fff;
   }
@@ -236,39 +241,55 @@ a:hover {
     right: 50%;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./assets/me-min.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./assets/me3.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 
     .tagline {
-        width: 100%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #fff;
-        text-align: center;
-        text-shadow: 1px 1px 1px #000;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      text-align: center;
+      text-shadow: 1px 1px 1px #000;
 
-        h1 {
-            font-size: 54px;
-            margin: 30px 0;
+      h1 {
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-size: 54px;
+        margin: 30px 0 15px 0;
 
-            a {
-              color: #fff;
-              text-decoration: none;
-            }
-
+        a {
+          color: #fff;
+          text-decoration: none;
         }
 
-        h5 {
-            font-size: 18px;
-            margin: 0;
-            font-weight: 200;
-        }
+      }
+
+      h5 {
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-size: 18px;
+        margin: 0;
+        font-weight: 200;
+      }
 
     }
 
+}
+#info * {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
 }
 #content {
     position: absolute;

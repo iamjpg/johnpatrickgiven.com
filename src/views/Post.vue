@@ -2,7 +2,7 @@
   <div id="post">
     <back-btn />
     <h1>{{ post.title }}</h1>
-    <div class="credit">By {{ post.author.firstname }} {{ post.author.lastname }} on <span v-html="returnDate(post.timestamps)"></span></div>
+    <div class="credit">Posted on <span v-html="returnDate(post.timestamps)"></span></div>
     <div id="post-body" v-html="post.body"></div>
   </div>
 </template>
@@ -62,9 +62,13 @@
   padding: 40px;
   h1 {
     margin-top: 0;
+    margin-bottom: 10px;
   }
   img {
     max-width: 100%;
+  }
+  .credit {
+    font-size: 14px;
   }
 }
 </style>

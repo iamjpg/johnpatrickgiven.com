@@ -57,9 +57,13 @@
   padding: 40px;
   h1 {
     margin-top: 0;
+    margin-bottom: 10px;
   }
   img {
     max-width: 100%;
+  }
+  .credit {
+    font-size: 14px;
   }
 }
 </style>
