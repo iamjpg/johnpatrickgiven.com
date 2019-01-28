@@ -31,12 +31,15 @@
   </div>
   <main>
     <section id="info">
-      <div class="tagline">
-        <h1><router-link :to="{ name: 'home' }">John Patrick Given</router-link></h1>
-        <h5>is a software developer living and working in Seattle, WA.</h5>
-      </div>
+      
     </section>
     <section id="content" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300">
+      <div id="intro">
+        <div class="tagline">
+          <h1><router-link :to="{ name: 'home' }">John Patrick Given</router-link></h1>
+          <h5>is a software developer living and working in Seattle, WA.</h5>
+        </div>
+      </div>
       <router-view :key="$route.fullPath" />
     </section>
   </main>
@@ -125,6 +128,12 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+#intro {
+  width: 100%;
+  height: 100vh;
+}
+
 .menu-toggle {
     width: 24px;
     height: 53px;
@@ -241,19 +250,32 @@ a:hover {
     right: 50%;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./assets/me-min.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./assets/me3.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+#content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    overflow-y: auto;
 
     .tagline {
       width: 100%;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      color: #fff;
+      color: #222;
       text-align: center;
-      text-shadow: 1px 1px 1px #000;
 
       h1 {
         font-family: 'PT Sans Narrow', sans-serif;
@@ -261,7 +283,7 @@ a:hover {
         margin: 30px 0 15px 0;
 
         a {
-          color: #fff;
+          color: #222;
           text-decoration: none;
         }
 
@@ -275,15 +297,6 @@ a:hover {
       }
 
     }
-
-}
-#content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    overflow-y: auto;
 }
 
 @media (max-width: 414px) {
@@ -292,6 +305,9 @@ a:hover {
   }
   #info {
     height: 40vh;
+    background-position-y: -65px;
+    background-position-x: center;
+    background-image: url("./assets/me3.jpg");
 
     .tagline {
       top: 20%;
@@ -306,5 +322,38 @@ a:hover {
     float: none;
     width: 100%;
   }
+}
+blockquote.twitter-tweet {
+  display: inline-block;
+  font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  border-color: #eee #ddd #bbb;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 10px 5px;
+  padding: 0 16px 16px 16px;
+  max-width: 468px;
+}
+
+blockquote.twitter-tweet p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+blockquote.twitter-tweet a {
+  color: inherit;
+  font-weight: normal;
+  text-decoration: none;
+  outline: 0 none;
+}
+
+blockquote.twitter-tweet a:hover,
+blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
 }
 </style>
